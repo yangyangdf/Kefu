@@ -1,0 +1,38 @@
+{% from 'common/_macros.html' import static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% include "common/_heads.html" %}
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+<link rel="stylesheet" href="{{ static('front/css/front_signbase.css') }}">
+<script src="{{ static('front/js/front_signup.js') }}"></script>
+
+
+
+
+<body>
+    <div class="outer-box">
+        <div class="logo-box">
+            <a href="/">
+                <img src="{{ static('common/images/logo.png') }}" alt="">
+            </a>
+        </div>
+        <h2 class="page-title">
+            {% block h2_block %}{% endblock %}
+        </h2>
+        <div class="sign-box" >
+            {% block signbox %}{% endblock %}
+        </div>
+    </div>
+<spans style="display: none" id="return-to-span">{{ return_to }}</spans>
+</body>
+</html>

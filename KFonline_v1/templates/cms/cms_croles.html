@@ -1,0 +1,84 @@
+{% extends 'cms/cms_base.html' %}
+{% from 'common/_macros.html' import static %}
+
+{% block title %}
+角色管理
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('cms/js/roles.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}
+{{ self.title() }}
+{% endblock %}
+
+{% block main_content %}
+<div class="top-box hidden">
+    <button class="btn btn-warning" style="float: right"  data-toggle="modal" data-target="#roles-dialog">添加新用户</button>
+</div>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>用户名称</th>
+        <th>角色</th>
+        <th>权限</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for cmsuser in cmsusers %}
+    <tr data-name="{{ cmsuser.username }}" data-id="{{ cmsuser.id }}" >
+        {% set user = cmsuser %}
+        <td>{{ cmsuser.username }}</td>
+        <td>{% for role in user.roles %}
+                        {{ role.name }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+        </td>
+        <td>{% for role in user.roles %}
+                        {{ role.desc }}
+                        {% if not loop.last %}/{% endif %}
+                    {% endfor %}
+        </td>
+        <td>
+{#            <button class="btn btn-default btn-xs change-user-btn">修改权限</button>#}
+            <button class="btn btn-danger btn-xs delete-user-btn">删除</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+ <div class="modal fade" id="roles-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加用户权限</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">email：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="email" placeholder="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">角色：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="role" placeholder="角色">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save-role-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "cms/cms_base.html" %}
+{% from "common/_macros.html" import static %}
+{% block title -%}
+修改密码
+{%- endblock %}
+
+{% block head %}
+
+    <script src="{{ static("common/zlajax.js") }}"></script>
+    <script src=" {{ static("cms/js/resetpwd.js") }}"></script>
+    <style>
+    .form-continer{
+        width: 390px;
+    }
+    </style>
+{% endblock %}
+
+{% block page_title -%}
+{{ self.title() }}
+{%- endblock %}
+
+{% block main_content %}
+
+    <div class="form-continer">
+
+        <form action="" method="post">
+
+             <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">旧密码</div>
+            <input type="password" class="form-control" name="oldpwd" placeholder="请输入旧密码">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">新密码</div>
+            <input type="password" class="form-control" name="newpwd" placeholder="请输入旧密码">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">确认新密码</div>
+            <input type="password" class="form-control" name="newpwd2" placeholder="请输入旧密码">
+        </div>
+    </div>
+            <button id="submit" type="submit" class="btn btn-primary">修改密码</button>
+        </form>
+
+
+
+    </div>
+
+
+
+{% endblock %}

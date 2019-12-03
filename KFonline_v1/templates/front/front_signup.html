@@ -1,0 +1,42 @@
+{% extends 'front/front_signbase.html' %}
+{% from 'common/_macros.html' import static %}
+
+{% block title %}
+    在线系统注册
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('front/js/front_signup.js') }}"></script>
+{% endblock %}
+
+{% block h2_block %}
+    注册在线知识库系统账号
+{% endblock %}
+
+{% block signbox %}
+    <div class="form-group">
+        <input type="text" class="form-control" id="telephone" name="telephone" placeholder="手机号码">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="用户名" name="username">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="密码" name="password">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="确认密码" name="password2">
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="请输入验证码" name="graph_captcha">
+            <span class="input-group-addon captcha-addon">
+                            <img id="captcha-img" class="captcha-img" src="{{ url_for('common.graph_captcha') }}"
+                                 alt="">
+                        </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <button id="submit-btn" class="btn btn-warning btn-block">立即注册</button>
+    </div>
+    <a href="{{ url_for('front.signin') }}"><p >返回登陆</p></a>
+{% endblock %}
